@@ -43,9 +43,9 @@ func EnvironmentVariables(w io.Writer, args ...string) error {
 
 2)
 that code looks great! however, can you make the first parameter of ListFiles use w as an io.Writer
-*/
 
-package builtins
+3)
+All those commands work great! You previously wrote a command for the shell builtin "ls" in go programming language, but io/ioutil is deprecated. Can you write this same function but replace the io/ioutil with just io: package builtins
 
 import (
 	"fmt"
@@ -67,6 +67,40 @@ func ListFiles(w io.Writer, args ...string) error {
 
 	for _, file := range files {
 		fmt.Fprintln(w, file.Name())
+	}
+
+	return nil
+}
+*/
+
+package builtins
+
+import (
+	"fmt"
+	"io"
+	"os"
+)
+
+func ListFiles(w io.Writer, args ...string) error {
+	dir := "."
+
+	if len(args) > 0 {
+		dir = args[0]
+	}
+
+	file, err := os.Open(dir)
+	if err != nil {
+		return err
+	}
+	defer file.Close()
+
+	files, err := file.Readdir(0)
+	if err != nil {
+		return err
+	}
+
+	for _, fileInfo := range files {
+		fmt.Fprintln(w, fileInfo.Name())
 	}
 
 	return nil
