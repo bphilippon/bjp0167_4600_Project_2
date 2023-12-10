@@ -1,5 +1,5 @@
 # Project 2: Shell Builtins
-![Coverage](https://img.shields.io/badge/Coverage-59.5%25-yellow)
+![Coverage](https://img.shields.io/badge/Coverage-54.0%25-yellow)
 
 ## Description
 
