@@ -86,6 +86,8 @@ func handleInput(w io.Writer, input string, exit chan<- struct{}) error {
 		return builtins.Echo(w, args...)
 	case "times": //4
 		return builtins.Times(w, args...)
+	case "alloc": //5
+		return builtins.Alloc(w, args...)
 	case "exit":
 		exit <- struct{}{}
 		return nil
