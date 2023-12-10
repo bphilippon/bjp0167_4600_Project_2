@@ -84,6 +84,8 @@ func handleInput(w io.Writer, input string, exit chan<- struct{}) error {
 		return builtins.Alias(w, args...)
 	case "echo": //3
 		return builtins.Echo(w, args...)
+	case "times": //4
+		return builtins.Times(w, args...)
 	case "exit":
 		exit <- struct{}{}
 		return nil
